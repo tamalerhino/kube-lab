@@ -48,7 +48,7 @@ Update and upgrade alpine and install curl
 apk update && apk upgrade
 ```
 ```
-apk add curl
+apk add curl vim
 ```
 
 Since were running Alpine you will need to do some additional preparation, from the [official k3s docs.](https://rancher.com/docs/k3s/latest/en/advanced/#additional-preparation-for-alpine-linux-setup)

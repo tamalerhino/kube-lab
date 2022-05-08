@@ -9,7 +9,7 @@ Then update your packages and install nginx(see instructions in setup-alpine.md)
 apk update && apk upgrade
 ```
 ```
-apk add nginx nginx-mod-stream
+apk add curl vim nginx nginx-mod-stream
 ```
 
 ## Step 2. Configure NGINX

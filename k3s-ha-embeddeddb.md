@@ -100,7 +100,38 @@ Thats it! You now have a full HA kubes cluster with worker 3 worker nodes backed
 If you want to add any more sever nodes just do follow step 3 on any additional servers, and for workers follow step4 on any additional servers.
 
 ## Step 5. Download kubeconfig to local desktop
-## TODO!! for now just git clone the repo to one of the server nodes and follow the next step
+The easiest way (not secure!) is to login to one of the Servers ex: `kb-server-1`
+and cat out the contents of the k3s.yml to copy to a kubeconfig on your local dev workstation.
+```bash
+cat /etc/rancher/k3s/k3s.yaml
+```
+ON WORKSATION:
+Install kubectl follwing this [link](https://kubernetes.io/docs/tasks/tools/)
+if kubeconfig file does not exist create it using
+```bash
+touch ~/.kube/config
+```
+And copy the contents in ther from the `k3s.yml` into `config` file
+Make sure you replace the line where it says `server:` to the ip of your lb in my case `server: https://192.168.22.100:6443`
+
+
+
+## OPTIONAL
+Optionaly you can install the kubernetes dashboard, its not needed but its nide to have WebUI especially when you are first learning.
+For the most up to date instructions click [here](https://github.com/kubernetes/dashboard)
+To install run
+```bash
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.5.1/aio/deploy/recommended.yaml
+```
+Then to make it availably localy run
+```
+kubectl proxy
+```
+now it should be available at the follwing address
+```
+http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
+```
+
 
 
 ## Step 6. Deploy a thing!
