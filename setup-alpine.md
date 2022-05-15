@@ -1,6 +1,6 @@
 # Alpine
 
-For our kubernetes lab we will be using the Alpine distro since it is a tiny distro and doesnt take upt too much to run.
+For our Kubernetes lab we will be using the Alpine Distro since it is a tiny Distro and doesn't take up too much to run.
 
 YOU WILL NEED TO MAKE 7 of these!!
 - 1 NGINX LB
@@ -8,13 +8,13 @@ YOU WILL NEED TO MAKE 7 of these!!
 - 3 Worker nodes
 
 ## Download Alpine
-Download aline from  "https://www.alpinelinux.org/downloads/"
+Download Alpine from  "https://www.alpinelinux.org/downloads/"
 Download the "Standard" version for your architecture.
 
 ## Install Alpine
-Once it is downloaded, load the iso, or burn it to a flash drive using etcher "https://www.balena.io/etcher/"
+Once it is downloaded, load the ISO, or burn it to a flash drive using etcher "https://www.balena.io/etcher/"
 
-Boot from the iso or usb.
+Boot from the ISO or USB.
 For the username use `root` - no password is needed
 Then run:
 ```
@@ -23,7 +23,7 @@ setup-alpine
 Follow the instructions but this should get you through
 - `us`
 - `us` (its going to ask for an alternative keyboard)
-- `kb-server-1` Replace `server` with `worker` for a worker node and `1` to the number you want. also for the nginx-lb name it `nginx-lb`
+- `kb-server-1` Replace `server` with `worker` for a worker node and `1` to the number you want. Also for the Nginx LB name it `nginx-lb`
 
 Many of these i just hit `enter` on for the defaults
 - `eht0`
@@ -31,7 +31,7 @@ Many of these i just hit `enter` on for the defaults
 - `no`
 - `<root_password>`
 - `<confirm_root_password>`
-- `UTC` or whaterver timezone youre in
+- `UTC` or whatever timezone you're in
 - `none`
 - `chrony`
 - `1`
@@ -51,7 +51,7 @@ apk update && apk upgrade
 apk add curl vim
 ```
 
-Since were running Alpine you will need to do some additional preparation, from the [official k3s docs.](https://rancher.com/docs/k3s/latest/en/advanced/#additional-preparation-for-alpine-linux-setup)
+Since were running Alpine you will need to do some additional preparation, from the [official K3s docs.](https://rancher.com/docs/k3s/latest/en/advanced/#additional-preparation-for-alpine-linux-setup)
 
 Update the `/etc/update-extlinux.conf` file by adding(you will add it to what is already there for example mine says `default_kernel_opts="pax_nouderef quiet rootfstype=ext4` so i just add the `cgroup` etc to that line.):
 ```bash
@@ -77,7 +77,7 @@ KB-worker-3| 192.68.22.113
 ...|...
 
 
-Lets go ahead and set a static address, again replacing it with your config for each server
+Lets go ahead and set a static address, again replacing it with your configuration for each server
 open `/etc/network/interfaces` and replace the line that says `iface eth0 inet dhcp` to:
 ```bash
 iface eth0 inet static
@@ -91,17 +91,17 @@ Finally reboot
 ```bash
 reboot
 ```
-Thats it!
+That's it!
 
 
-## Additional configs
+## Additional Configuration
 
 ### SSHD
 It might be a pain to have to write everything through the console, alpine has sshd installed and running but you cant login with the root user unless you make some changes
 
-edit the `/etc/ssh/sshd_config` file by:
+Edit the `/etc/ssh/sshd_config` file by:
 
-uncomenting the line
+Uncommenting the line
 ```
 #PermitRootLogin prohibit-password
 ```

@@ -1,2 +1,2 @@
 # kube-lab
-Instructions for a kubes lab
+Instructions for a Kubernetes lab
