@@ -121,6 +121,20 @@ To install run
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.5.1/aio/deploy/recommended.yaml
 ```
+Create a Dashboard Admin user
+
+If you are going to login you will need to create a Admin user for the dashboard and the role to give you permissions to the dashboard.
+
+In kube-files you will find the dashboard.admin-user.yml and dashboard.admin-user-role.yml files ready to go. You can change the "admin-user" to a different name if you want, otherwise just leave it all as is. Likewise you can create more users and add them to the dashboard admin role.
+
+Run the following to create your user.
+```
+kubectl create -f dashboard.admin-user.yml -f dashboard.admin-user-role.yml
+```
+Get your admin user token(bearer token), since the dashboard will ask for it.
+```
+kubectl -n kubernetes-dashboard describe secret admin-user-token | grep ^token
+```
 Then to make it available locally run
 ```
 kubectl proxy
@@ -129,6 +143,7 @@ now it should be available at the following address
 ```
 http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
 ```
+Once you login it will ask for a bearer token, use the one we got with our grep command.
 
 ## Step 6. Deploy a thing!
 Alright so now you got an HA cluster but nothing running on it..Lets change that!
@@ -140,5 +155,4 @@ run the following to make sure they deployed
 ```
 kubectl get pods
 ```
-
 

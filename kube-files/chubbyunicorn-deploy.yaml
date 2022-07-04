@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: chubbyunicorn-deployment
+  name: chubz-deployment
   labels:
     app: chubz
 spec:
@@ -16,7 +16,6 @@ spec:
     spec:
       containers:
       - name: chubz
-        image: tamalerhino/chubby-unicorn
-        imagePullPolicy: Always
+        image: tamalerhino/chubby-unicorn:latest
         ports:
         - containerPort: 80
